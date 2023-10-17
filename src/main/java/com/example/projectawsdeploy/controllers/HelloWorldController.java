@@ -10,6 +10,11 @@ public class HelloWorldController {
         return "run";
     }
 
+    @GetMapping("/walk")
+    public String walk() {
+        return "walk";
+    }
+
     @PostMapping("sum/{number1}")
     public String sum(@PathVariable("number1") int number1) {
         // You can do some processing with "number1" here.
