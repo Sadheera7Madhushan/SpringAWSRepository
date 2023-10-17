@@ -1,21 +1,21 @@
-version: 0.2
-
-phases:
-  install:
-    runtime-versions:
-      java: corretto11
-
-  pre_build:
-    commands:
-      - echo "Pre-build phase"
-
-  build:
-    commands:
-      - mvn clean package -DskipTests=true
-
-  post_build:
-    commands:
-      - echo "Post-build phase"
-
-artifacts:
-  files: target/*.war
+#version: 0.2
+#
+#phases:
+#  install:
+#    runtime-versions:
+#      java: corretto11
+#
+#  pre_build:
+#    commands:
+#      - echo "Pre-build phase"
+#
+#  build:
+#    commands:
+#      - mvn clean package -DskipTests=true
+#
+#  post_build:
+#    commands:
+#      - echo "Post-build phase"
+#
+#artifacts:
+#  files: target/*.war
