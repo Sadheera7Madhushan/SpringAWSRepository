@@ -12,7 +12,7 @@ public class HelloWorldController {
 
     @GetMapping("/walk")
     public String walk() {
-        return "walk...walk";
+        return "walk....";
     }
 
     @PostMapping("sum/{number1}")
