@@ -15,6 +15,11 @@ public class HelloWorldController {
         return "walk....";
     }
 
+    @GetMapping("/see")
+    public String see() {
+        return "see3....";
+    }
+
     @PostMapping("sum/{number1}")
     public String sum(@PathVariable("number1") int number1) {
         // You can do some processing with "number1" here.
