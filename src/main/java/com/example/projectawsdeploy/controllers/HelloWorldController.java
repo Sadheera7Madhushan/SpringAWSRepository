@@ -17,7 +17,7 @@ public class HelloWorldController {
 
     @GetMapping("/see")
     public String see() {
-        return "see3....";
+        return "my first pipeline is ok";
     }
 
     @PostMapping("sum/{number1}")
