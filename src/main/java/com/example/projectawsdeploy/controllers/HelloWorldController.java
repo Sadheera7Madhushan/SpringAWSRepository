@@ -17,7 +17,7 @@ public class HelloWorldController {
 
     @GetMapping("/talk")
     public String see() {
-        return "A man is talking";
+        return "A man is talking talking talking .... ";
     }
 
     @PostMapping("sum/{number1}")
