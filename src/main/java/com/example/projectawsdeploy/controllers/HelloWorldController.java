@@ -17,7 +17,7 @@ public class HelloWorldController {
 
     @GetMapping("/see")
     public String see() {
-        return "my first pipeline is ok now";
+        return "A man is seeing something ...";
     }
 
     @PostMapping("sum/{number1}")
@@ -25,6 +25,7 @@ public class HelloWorldController {
         // You can do some processing with "number1" here.
         // For example, you can return it directly as a string:
         return String.valueOf(number1);
+
     }
 
 }
