@@ -1,23 +1,28 @@
 package com.example.projectawsdeploy.controllers;
 
+import com.example.projectawsdeploy.models.Person;
+import com.example.projectawsdeploy.repositories.PersonRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/aws")
 public class HelloWorldController {
+    private final PersonRepository personRepository;
+
+    public HelloWorldController(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
     @GetMapping("/run")
     public String run() {
         return "run";
     }
 
-    @GetMapping("/walk")
-    public String walk() {
-        return "walk....";
-    }
-
-    @GetMapping("/talk")
-    public String see() {
-        return "A man is talking talking talking .... ";
+    @GetMapping("/persons")
+    public List<Person> personList() {
+        return personRepository.findAll();
     }
 
     @PostMapping("sum/{number1}")
