@@ -3,7 +3,6 @@ package com.example.projectawsdeploy.controllers;
 import com.example.projectawsdeploy.models.Person;
 import com.example.projectawsdeploy.repositories.PersonRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,9 +34,9 @@ public class HelloWorldController {
     }*/
 
     @GetMapping("/login")
-    public String example(Model model) {
-        model.addAttribute("message", "Hello, Thymeleaf!");
-        return "example";
+    public String login() {
+        // model.addAttribute("message", "Hello, Thymeleaf!");
+        return "login";
     }
 
 }
