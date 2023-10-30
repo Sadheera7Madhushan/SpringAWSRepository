@@ -2,7 +2,7 @@
 <html lang="">
 <head>
     <title>User Registration</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <style>
         .form-group {
             margin-bottom: 10px;
@@ -36,70 +36,79 @@
             padding: 10px;
             cursor: pointer;
         }
+
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('registrationForm').addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                // Collect form data
-                var formData = {
-                    email: document.getElementById('email').value,
-                    username: document.getElementById('username').value,
-                    password: document.getElementById('password').value,
-                    confirmPassword: document.getElementById('confirmPassword').value
-                };
-
-                // Convert form data to JSON
-                var jsonData = JSON.stringify(formData);
-
-                // Send JSON data to the server
-                fetch('/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: jsonData
-                })
-                    .then(response => (response.text()))
-                    .then(data => {
-                        document.getElementById('response').textContent = data;
-                        console.log("response ", data);
-                    })
-            })
-            document.getElementById('back-button').addEventListener('click', function (event) {
-                window.location.href = '/login';
-            })
-        })
     </script>
 </head>
 <body>
-<div class="container">
+<div class="registration-container">
     <h2>User Registration</h2>
-    <form id="registrationForm">
+
+    <form th:action="@{/register}" method="post" th:object="${register}" id="register">
+
+        <div th:if="${param.errorMessage}" th:text="${errorMessage}" class="alert alert-danger">
+        </div>
+
+        <div th:if="${param.successMessage}" th:text="${successMessage}" class="alert alert-success">
+        </div>
+
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required="required"/>
+            <input type="email" id="email" name="email" required="required"
+                   title="Please enter a valid email address"/>
         </div>
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required="required"/>
+            <input type="text" id="username" name="username" required="required"
+                   minlength="4"/>
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required="required"/>
+            <input type="password" id="password" name="password" required="required" minlength="8"
+                   pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+                   title="Password is not strong. It should contain at least one digit, one lowercase letter,
+                    one uppercase letter, and be at least 8 characters long"/>
         </div>
         <div class="form-group">
             <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required="required"/>
+            <input type="password" id="confirmPassword" name="confirmPassword" required="required"
+                   oninput="checkPasswordMatch();"/>
         </div>
+
+        <div id="passwordMatchMessage"></div>
+
         <button type="submit">Register</button>
-        <p id="back-button" class="buttons">Back</p>
+
         <br><br>
-        <div>
-            <span id="response"></span>
-        </div>
+        <a th:href="@{/login}" class="buttons">Back</a>
     </form>
 </div>
+<script>
+    function checkPasswordMatch() {
+
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const message = document.getElementById('passwordMatchMessage');
+
+        if (password === confirmPassword) {
+            message.textContent = 'Passwords match!';
+            message.style.color = 'green';
+        } else {
+            message.textContent = 'Passwords do not match';
+            message.style.color = 'red';
+        }
+    }
+
+    const form = document.getElementById('register');
+    form.addEventListener('submit', function (e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            e.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
 </body>
 </html>
