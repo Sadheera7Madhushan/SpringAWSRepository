@@ -136,3 +136,15 @@ h2 {
 .logout-button:hover {
     background-color: #c82333; /* Background color on hover */
 }
+
+.notification-success {
+    color: #18be38;
+}
+
+.notification-error{
+    color: rgba(241, 7, 7, 0.87);
+}
+
+.notification-info{
+    color: #0c2b8a;
+}
